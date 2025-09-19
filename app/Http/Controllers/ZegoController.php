@@ -41,10 +41,7 @@ class ZegoController extends Controller
         $expireTime   = 3600; // seconds
 
         // Privileges: 1 => login, 2 => publish stream
-        $payload = json_encode([
-            'room_id'   => $roomId,
-            'privilege' => [1 => 1, 2 => 1],
-        ]);
+        $payload = '';
 
         $res = ZegoServerAssistant::generateToken04(
             $appId,
@@ -66,13 +63,13 @@ class ZegoController extends Controller
         $room = Room::where('room_id', $roomId)->firstOrFail();
         // You can also generate a token here (server-side) if needed
         $userId = 'web_' . uniqid();
-        $token  = $this->generateZegoToken($roomId, $userId);
 
+        $token  = $this->generateZegoToken($roomId, $userId);
         return view('meeting', [
-            'appId'  => env('ZEGO_APP_ID'),
-            'roomId' => $roomId,
-            'userId' => $userId,
-            'token'  => $token,
+            'app_id'  => intval(env('ZEGO_APP_ID')),
+            'room_id' => $roomId,
+            'user_id' => (string)$userId,
+            'token'   => $token,
         ]);
     }
 }
