@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <style>
         #root {
@@ -7,6 +8,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="root"></div>
 </body>
@@ -15,21 +17,22 @@
 <script src="https://unpkg.com/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"></script>
 <script>
     // Laravel values injected from backend
-    const roomID   = @json($room_id);
-    const appID    = @json($app_id);
-    const token    = @json($token);  // ✅ JWT you generated in backend
-    const userID   = Math.floor(Math.random() * 10000) + "";
+    const roomID = @json($room_id);
+    const appID = @json($app_id);
+    const token = @json($token); // ✅ JWT you generated in backend
+    const userID = @json($user_id);
     const userName = "user_" + userID;
 
     // ✅ Generate KitToken (client-side, with token from backend)
-    const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
+    const kitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(
         appID,
-        token,      // use your server-generated JWT here
+        token, // use your server-generated JWT here
         roomID,
         userID,
         userName
     );
 
+    console.log(kitToken);
     // ✅ Create instance
     const zp = ZegoUIKitPrebuilt.create(kitToken);
 
@@ -45,4 +48,5 @@
         },
     });
 </script>
+
 </html>
