@@ -32,7 +32,6 @@
         userName
     );
 
-    console.log(kitToken);
     // ✅ Create instance
     const zp = ZegoUIKitPrebuilt.create(kitToken);
 

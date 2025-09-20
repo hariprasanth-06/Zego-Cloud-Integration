@@ -31,6 +31,7 @@ class ZegoController extends Controller
             'token'   => $token,
             'app_id'  => intval(env('ZEGO_APP_ID')),
             'user_id' => $user->id,
+            'meeting_url' => url("/meeting/$roomId") // 🔗 send web meeting link
         ]);
     }
 
